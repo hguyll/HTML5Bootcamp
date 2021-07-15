@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Storing Persistent Data-starter</title>
+	<script>
+		//Step 3: add saveLocal() function here
+		function saveLocal() {
+			if(window.localStorage) {
+				let firstName = document.getElementById("firstname").value;
+				let title = document.getElementById("title").value;
+				let person = {
+					"firstName": firstName,
+					"title": title
+				};
+
+				window.localStorage.setItem("person", JSON.stringify(person));
+			} else {
+				console.log("NO LOCAL STORAGE AVAILABLE!");
+			}
+		}
+		//Step 5: add readLocal() function here
+
+		function readLocal() {
+			if(window.localStorage) {
+				let person = JSON.parse(window.localStorage.getItem("person"));
+				document.getElementById("firstname").value = person.firstName;
+				document.getElementById("title").value = person.title;
+
+			}
+		}
+	</script>
+</head>
+<body>
+<label for="firstname">First Name: </label>
+<input type="text" name="firstname" id="firstname">
+<label for="title">Title: </label>
+<input type="text" name="title" id="title">
+<div id="main">
+	<input id="saveBtn" type="button" value="Save Values" onclick=saveLocal()>
+	<input id="readBtn" type="button" value="Read Values" onClick=readLocal()>
+</div>
+</body>
+</html>
